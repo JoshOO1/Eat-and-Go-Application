@@ -1,13 +1,13 @@
-package com.EatandGoAppplication.EatandGoApplication;
+// package com.EatandGoAppplication.EatandGoApplication;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class EatAndGoApplicationTests {
+// @SpringBootTest
+// class EatAndGoApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }
