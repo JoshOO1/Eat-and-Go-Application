@@ -1,0 +1,59 @@
+Index: .github/workflows/main.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: Build and Deploy Eat-and-Go-Application\non:\n  push:\n    branches:\n      -main\n\n    jobs:\n      build-deploy:\n        name: Build and Deploy Eat-and =-Go-Application\n        runs-on: MacOS\n        steps:\n          - name: Checkout Code\n            uses: actions/setup-java@v3\n\n          - name: Setup JDK 17\n            uses: actions/setup-java@V3\n            with:\n              distribution: 'corretto'\n              java-version: 17\n\n\n          - name: Unit Tests\n            run: mvn -B test --file pom.xml\n\n          - name: Build the Application\n            run:\n              mvn clean\n              mvn -B package --file\n\n\n\n
+===================================================================
+diff --git a/.github/workflows/main.yml b/.github/workflows/main.yml
+--- a/.github/workflows/main.yml	
++++ b/.github/workflows/main.yml	
+@@ -1,31 +1,29 @@
++
++
+ name: Build and Deploy Eat-and-Go-Application
++
+ on:
+   push:
+-    branches:
+-      -main
++    branches: [ "main" ]
++  pull_request:
++    branches: [ "main" ]
++      
+ 
+-    jobs:
+-      build-deploy:
+-        name: Build and Deploy Eat-and =-Go-Application
+-        runs-on: MacOS
++jobs:
++      build:
++      
++        runs-on: ubuntu-latest
++        
+         steps:
+-          - name: Checkout Code
+-            uses: actions/setup-java@v3
+-
++          - uses: actions/checkout@v3
+           - name: Setup JDK 17
+-            uses: actions/setup-java@V3
++            uses: actions/setup-java@v3
+             with:
+-              distribution: 'corretto'
+-              java-version: 17
+-
+-
+-          - name: Unit Tests
+-            run: mvn -B test --file pom.xml
+-
+-          - name: Build the Application
+-            run:
+-              mvn clean
+-              mvn -B package --file
++              java-version: '17'
++              distribution: 'temurin'
++              cache: maven
++          - name: Build with Maven
++            run: mvn -B test --file pom.xml -D.maven.test.skip
+ 
+ 
+ 
