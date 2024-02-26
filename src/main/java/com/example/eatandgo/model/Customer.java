@@ -3,6 +3,7 @@ package com.example.eatandgo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -12,6 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer extends UserBaseEntity{
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastLogin;
 
     @OneToOne
     @JoinColumn(name = "address_id")
