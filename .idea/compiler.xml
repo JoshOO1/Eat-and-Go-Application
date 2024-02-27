@@ -10,9 +10,12 @@
       </profile>
     </annotationProcessing>
   </component>
+ CI-CD-Pipeline
+
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Eat-and-Go" options="-parameters" />
     </option>
   </component>
+main
 </project>
