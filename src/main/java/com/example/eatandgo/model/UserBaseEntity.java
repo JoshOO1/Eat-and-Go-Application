@@ -29,7 +29,7 @@ public abstract class UserBaseEntity {
     private String confirmPassword;
     @Column(name = "phone_number")
     private String phoneNumber;
-    private Boolean isVerified = true;
+    private Boolean isVerified = false;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(name = "created_at")

@@ -1,7 +1,6 @@
 package com.example.eatandgo.service.impl;
 
 import com.example.eatandgo.dto.request.LoginRequest;
-import com.example.eatandgo.dto.request.RegisterUserRequest;
 import com.example.eatandgo.dto.response.ApiResponse;
 import com.example.eatandgo.dto.response.LoginResponse;
 import com.example.eatandgo.enums.Role;
@@ -40,30 +39,6 @@ public class CustomerServiceImpl implements CustomerService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-
-    @Override
-    public ApiResponse<Customer> registerUser(RegisterUserRequest registerUserRequest) {
-//        Boolean doesUserExist = customerRepository.existsByEmail(registerUserRequest.getEmail());
-//        if(doesUserExist){
-//            throw new CustomException("Account already exist");
-//        }
-        Optional<Customer> customerOptional = customerRepository.findByEmail(registerUserRequest.getEmail());
-        if (customerOptional.isPresent()) {
-         return new ApiResponse<>("Customer already exist","01",HttpStatus.BAD_REQUEST);
-        }
-        Customer newCustomer = new  Customer();
-        newCustomer.setFullName(registerUserRequest.getFullName());
-        newCustomer.setEmail(registerUserRequest.getEmail());
-        newCustomer.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
-        newCustomer.setConfirmPassword(passwordEncoder.encode(registerUserRequest.getConfirmPassword()));
-        newCustomer.setPhoneNumber(registerUserRequest.getPhoneNumber());
-        newCustomer.setRole(Role.CUSTOMER);
-        newCustomer.setIsVerified(true);
-        System.out.println(newCustomer);
-        customerRepository.save(newCustomer);
-        return new ApiResponse<>("Account successfully created","00", HttpStatus.CREATED,newCustomer);
-    }
-
 
     @Override
     public ApiResponse<LoginResponse> login(LoginRequest loginRequest) {
